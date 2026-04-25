@@ -64,9 +64,9 @@ public abstract class LivingEntityMixin extends Entity {
         int level = ModEnchantments.getKillLineLevel(weapon);
         if (level <= 0) return;
 
-        KILL_LINE_LOGGER.info("Kill Line level {} detected on {} hitting {} (HP: {:.1f}/{:.1f})",
+        KILL_LINE_LOGGER.info("Kill Line level {} detected on {} hitting {} (HP: {}/{})",
                 level, attacker.getName().getString(), self.getName().getString(),
-                self.getHealth(), self.getMaxHealth());
+                String.format("%.1f", self.getHealth()), String.format("%.1f", self.getMaxHealth()));
 
         MarkManager markManager = MarkManager.getInstance();
         UUID targetUuid = self.getUUID();
@@ -89,22 +89,22 @@ public abstract class LivingEntityMixin extends Entity {
             // Also check threshold on first mark
             if (healthPercent <= threshold) {
                 ModNetworking.sendThresholdReached(serverLevel, self, attacker);
-                KILL_LINE_LOGGER.info("Threshold reached on first mark! HP%: {:.2f} <= threshold: {:.2f}",
-                        healthPercent, threshold);
+                KILL_LINE_LOGGER.info("Threshold reached on first mark! HP%: {} <= threshold: {}",
+                        String.format("%.2f", healthPercent), String.format("%.2f", threshold));
             }
         } else {
             // Target is already marked by this attacker
             if (healthPercent <= threshold) {
                 // Send threshold visual
                 ModNetworking.sendThresholdReached(serverLevel, self, attacker);
-                KILL_LINE_LOGGER.info("Threshold reached! HP%: {:.2f} <= threshold: {:.2f}",
-                        healthPercent, threshold);
+                KILL_LINE_LOGGER.info("Threshold reached! HP%: {} <= threshold: {}",
+                        String.format("%.2f", healthPercent), String.format("%.2f", threshold));
 
                 // Roll for instant kill
                 float killChance = ModEnchantments.getKillChance(level);
                 float roll = this.random.nextFloat();
-                KILL_LINE_LOGGER.info("Kill roll: {:.3f} vs chance: {:.3f} => {}",
-                        roll, killChance, roll < killChance ? "KILL!" : "miss");
+                KILL_LINE_LOGGER.info("Kill roll: {} vs chance: {} => {}",
+                        String.format("%.3f", roll), String.format("%.3f", killChance), roll < killChance ? "KILL!" : "miss");
                 if (roll < killChance) {
                     // Instant kill!
                     this.kill_line$processingKill = true;

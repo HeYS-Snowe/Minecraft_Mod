@@ -9,7 +9,7 @@ public class AnimationDispatcher {
 
     public static void triggerDeathAnimation(ServerLevel world, LivingEntity entity,
                                               DeathAnimationType animationType, Vec3 direction) {
-        if (world.isClientSide) return;
+        // ServerLevel is always server-side, no isClientSide check needed
 
         float dirX = (float) direction.x;
         float dirZ = (float) direction.z;
