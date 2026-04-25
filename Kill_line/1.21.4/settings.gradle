@@ -1,0 +1,13 @@
+pluginManagement {
+    repositories {
+        maven {
+            name = 'Fabric'
+            url = 'https://maven.fabricmc.net/'
+        }
+        gradlePluginPortal()
+    }
+}
+
+includeBuild '../../KillLineAnimation/1.21.4'
+
+rootProject.name = 'Kill_line'

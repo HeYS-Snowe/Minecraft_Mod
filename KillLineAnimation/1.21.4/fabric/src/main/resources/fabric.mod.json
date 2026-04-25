@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "kill_line_animation",
+  "version": "${version}",
+  "name": "KillLine Animation",
+  "description": "Custom death animation library for Minecraft mods. Provides API for registering and playing death animations with model fragment rendering.",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/kill_line_animation/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.kill_line.animation.KillLineAnimationMod"
+    ],
+    "client": [
+      "com.kill_line.animation.client.KillLineAnimationClient"
+    ]
+  },
+  "mixins": [
+    "kill_line_animation.mixins.json",
+    {
+      "config": "kill_line_animation.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}",
+    "java": ">=21"
+  }
+}

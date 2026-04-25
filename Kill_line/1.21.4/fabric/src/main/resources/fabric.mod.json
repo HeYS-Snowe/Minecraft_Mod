@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "kill_line",
+  "version": "${version}",
+  "name": "Kill_line",
+  "description": "Kill line",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/kill_line/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "com.kill_line.kill_line.client.Kill_lineDataGenerator"
+    ],
+    "client": [
+      "com.kill_line.kill_line.client.Kill_lineClient"
+    ],
+    "main": [
+      "com.kill_line.kill_line.Kill_line"
+    ]
+  },
+  "mixins": [
+    "kill_line.mixins.json",
+    {
+      "config": "kill_line.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

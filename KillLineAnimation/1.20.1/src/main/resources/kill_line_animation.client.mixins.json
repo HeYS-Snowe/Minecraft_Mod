@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.kill_line.animation.client.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "kill_line_animation.refmap.json",
+  "mixins": [],
+  "client": [
+    "EntityRenderDispatcherMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

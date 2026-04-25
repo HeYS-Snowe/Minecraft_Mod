@@ -1,0 +1,49 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Minecraft run directories
+run/
+run-data/
+
+# Logs
+*.log
+
+# Build artifacts (tracked separately in build/current/ and build/archive/)
+**/build/libs/
+**/build/classes/
+**/build/generated/
+**/build/loom-cache/
+**/build/processIncludeJars/
+**/build/reports/
+**/build/resources/
+**/build/tmp/
+**/build/devlibs/
+
+# Gradle caches in project dirs
+**/.gradle/
+
+# Forge/Fabric dev outputs
+**/src/generated/resources/
+
+# Sensitive files
+*.env
+*.key
+*.pem
