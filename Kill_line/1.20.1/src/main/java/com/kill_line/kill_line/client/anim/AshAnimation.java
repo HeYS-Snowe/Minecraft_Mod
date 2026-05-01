@@ -77,6 +77,18 @@ public class AshAnimation extends AbstractDeathAnimation {
 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource consumers, int light, float tickDelta) {
+        if (!snapshot.hasStandardBipedParts()) {
+            // Fallback: enumerate all children dissolving together
+            java.util.List<String> children = snapshot.getAllChildNames();
+            for (String childName : children) {
+                AnimatedFragment frag = new AnimatedFragment(childName);
+                frag.scale(shrink);
+                frag.alpha(alpha);
+                FragmentRenderer.renderFragment(snapshot, frag, poseStack, consumers, light);
+            }
+            return;
+        }
+
         String[] parts = {"body", "right_arm", "left_arm", "right_leg", "left_leg", "head"};
         float[] dissolveThreshold = {0.0f, 0.2f, 0.2f, 0.3f, 0.3f, 0.6f};
 

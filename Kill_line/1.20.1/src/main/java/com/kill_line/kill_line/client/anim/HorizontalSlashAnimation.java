@@ -70,6 +70,20 @@ public class HorizontalSlashAnimation extends AbstractDeathAnimation {
 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource consumers, int light, float tickDelta) {
+        if (!snapshot.hasStandardBipedParts()) {
+            // Fallback: enumerate all children splitting apart
+            java.util.List<String> children = snapshot.getAllChildNames();
+            for (String childName : children) {
+                AnimatedFragment frag = new AnimatedFragment(childName);
+                frag.offset(upperBody.getOffsetX() * 0.5f, upperBody.getOffsetY(), upperBody.getOffsetZ() * 0.5f);
+                frag.rotation(upperBody.getRotationX(), 0, upperBody.getRotationZ());
+                frag.scale(upperBody.getScale());
+                frag.alpha(upperBody.getAlpha());
+                FragmentRenderer.renderFragment(snapshot, frag, poseStack, consumers, light);
+            }
+            return;
+        }
+
         // Render upper body parts
         for (String partName : UPPER_PARTS) {
             AnimatedFragment frag = new AnimatedFragment(partName);

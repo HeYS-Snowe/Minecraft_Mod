@@ -23,17 +23,17 @@
 
 创建新 MC 版本项目时，AI 应提供以下信息：
 
-| 配置项 | 说明 | 获取来源 |
-|--------|------|----------|
-| Mod ID | 小写字母、数字、下划线，2-64 字符 | mod 需求文档 |
-| Mod Name | 显示名称 | mod 需求文档 |
-| Package / Group ID | Java 包名 | 如 `com.kill_line` |
-| MC Version | 目标版本 | 用户需求 |
-| Loader | Fabric / Forge / NeoForge | 用户需求 |
-| Java Version | 17 (MC 1.18-1.20.4) / 21 (MC 1.20.5+) | MC 版本决定 |
-| Mappings | Fabric: Yarn / Forge/NeoForge: Official | 加载器决定 |
-| Loader Version | 具体版本号 | dependencies.md 或官网查询 |
-| API/MDK Version | Fabric API / Forge MDK 版本 | dependencies.md 或官网查询 |
+| 配置项                | 说明                                      | 获取来源                  |
+| ------------------ | --------------------------------------- | --------------------- |
+| Mod ID             | 小写字母、数字、下划线，2-64 字符                     | mod 需求文档              |
+| Mod Name           | 显示名称                                    | mod 需求文档              |
+| Package / Group ID | Java 包名                                 | 如 `com.kill_line`     |
+| MC Version         | 目标版本                                    | 用户需求                  |
+| Loader             | Fabric / Forge / NeoForge               | 用户需求                  |
+| Java Version       | 17 (MC 1.18-1.20.4) / 21 (MC 1.20.5+)   | MC 版本决定               |
+| Mappings           | Fabric: Yarn / Forge/NeoForge: Official | 加载器决定                 |
+| Loader Version     | 具体版本号                                   | dependencies.md 或官网查询 |
+| API/MDK Version    | Fabric API / Forge MDK 版本               | dependencies.md 或官网查询 |
 
 ### 放置位置
 

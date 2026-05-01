@@ -42,6 +42,9 @@ public class SlashLineRenderer {
             MultiBufferSource consumers = client.renderBuffers().bufferSource();
             renderSlashLine(poseStack, consumers, living, progress, camera);
         }
+
+        // Flush the buffer to ensure lines are actually drawn
+        client.renderBuffers().bufferSource().endBatch();
     }
 
     private static int argb(int a, int r, int g, int b) {

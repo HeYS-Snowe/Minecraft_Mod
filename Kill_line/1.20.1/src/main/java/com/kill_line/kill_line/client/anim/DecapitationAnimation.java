@@ -79,6 +79,31 @@ public class DecapitationAnimation extends AbstractDeathAnimation {
 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource consumers, int light, float tickDelta) {
+        if (!snapshot.hasStandardBipedParts()) {
+            // Fallback: identify head by PartPose offset, rest as body
+            String headName = snapshot.findHeadChildName();
+            java.util.List<String> allChildren = snapshot.getAllChildNames();
+
+            // Render head (detached, flying)
+            AnimatedFragment headFrag = new AnimatedFragment(headName);
+            headFrag.offset(headX, headY, headZ);
+            headFrag.rotation(headRotX, 0, headRotZ);
+            headFrag.scale(scale);
+            headFrag.alpha(alpha);
+            FragmentRenderer.renderFragment(snapshot, headFrag, poseStack, consumers, light);
+
+            // Render body parts (swaying/collapsing)
+            for (String childName : allChildren) {
+                if (childName.equals(headName)) continue;
+                AnimatedFragment frag = new AnimatedFragment(childName);
+                frag.rotation(0, 0, bodyRotZ + bodySwayAngle);
+                frag.scale(scale);
+                frag.alpha(alpha);
+                FragmentRenderer.renderFragment(snapshot, frag, poseStack, consumers, light);
+            }
+            return;
+        }
+
         // Render head (detached, flying)
         AnimatedFragment headFrag = new AnimatedFragment("head");
         headFrag.offset(headX, headY, headZ);

@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -32,31 +32,17 @@ public class SlashKillHandler {
     }
 
     /**
-     * Intercepts left-click attacks on entities.
-     * If the player clicks an invulnerable entity with a completed slash trace,
-     * sends the slash kill packet to the server.
+     * Intercepts attacks on entities (Forge equivalent of Fabric's AttackEntityCallback).
+     * If the player attacks an invulnerable entity with a completed slash trace,
+     * cancels the vanilla attack and sends the slash kill packet to the server.
      */
     @SubscribeEvent
-    public static void onPlayerLeftClickEmpty(PlayerInteractEvent.LeftClickEmpty event) {
-        // This fires on client when left-clicking empty space or after a missed attack.
-        // We need to check if the crosshair entity is a slash-ready target.
-        handleSlashAttack();
-    }
-
-    @SubscribeEvent
-    public static void onPlayerLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
-        // Also handle case where player clicks a block but has a slash-ready entity targeted
-        handleSlashAttack();
-    }
-
-    private static void handleSlashAttack() {
-        Minecraft client = Minecraft.getInstance();
-        if (client.player == null || client.level == null) return;
-
-        Entity target = client.crosshairPickEntity;
+    public static void onAttackEntity(AttackEntityEvent event) {
+        Entity target = event.getTarget();
         if (target == null) return;
 
         if (SlashLineManager.getInstance().isTraceComplete(target.getId())) {
+            event.setCanceled(true);
             ModNetworking.CHANNEL.sendToServer(new ModPayloads.SlashKillPayload(target.getId()));
             SlashLineManager.getInstance().removeLine(target.getId());
         }

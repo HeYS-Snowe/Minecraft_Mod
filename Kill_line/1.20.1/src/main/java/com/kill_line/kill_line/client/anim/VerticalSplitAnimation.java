@@ -58,6 +58,29 @@ public class VerticalSplitAnimation extends AbstractDeathAnimation {
 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource consumers, int light, float tickDelta) {
+        if (!snapshot.hasStandardBipedParts()) {
+            // Fallback: identify left/right by PartPose X offset
+            java.util.List<String> leftParts = snapshot.findLeftChildNames();
+            java.util.List<String> rightParts = snapshot.findRightChildNames();
+            java.util.List<String> centerParts = snapshot.findCenterChildNames();
+
+            // Render right-side parts
+            for (String childName : rightParts) {
+                renderFragment(childName, rightOffsetX, 0, 0, 0, 0, rightRotZ, poseStack, consumers, light);
+            }
+            // Render left-side parts
+            for (String childName : leftParts) {
+                renderFragment(childName, leftOffsetX, 0, 0, 0, 0, leftRotZ, poseStack, consumers, light);
+            }
+            // Center parts (head, body) split with partial offset
+            for (String childName : centerParts) {
+                // Render twice: once for each half
+                renderFragment(childName, leftOffsetX * 0.5f, 0, 0, 0, 0, leftRotZ * 0.3f, poseStack, consumers, light);
+                renderFragment(childName, rightOffsetX * 0.5f, 0, 0, 0, 0, rightRotZ * 0.3f, poseStack, consumers, light);
+            }
+            return;
+        }
+
         // Render left half
         for (String partName : LEFT_PARTS) {
             renderFragment(partName, leftOffsetX, 0, 0, 0, 0, leftRotZ, poseStack, consumers, light);

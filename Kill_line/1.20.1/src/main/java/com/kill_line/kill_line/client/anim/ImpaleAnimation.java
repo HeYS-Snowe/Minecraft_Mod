@@ -83,6 +83,25 @@ public class ImpaleAnimation extends AbstractDeathAnimation {
 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource consumers, int light, float tickDelta) {
+        // Render phantom swords (always)
+        if (swordAlpha > 0.01f) {
+            renderPhantomSwords(poseStack, consumers);
+        }
+
+        if (!snapshot.hasStandardBipedParts()) {
+            // Fallback: enumerate all children with slump effect
+            java.util.List<String> children = snapshot.getAllChildNames();
+            for (String childName : children) {
+                AnimatedFragment frag = new AnimatedFragment(childName);
+                frag.offset(0, bodyOffsetY, 0);
+                frag.rotation(headPitch * 0.2f, 0, 0);
+                frag.scale(scale);
+                frag.alpha(alpha);
+                FragmentRenderer.renderFragment(snapshot, frag, poseStack, consumers, light);
+            }
+            return;
+        }
+
         // Render entity parts with slump
         String[] allParts = {"head", "body", "right_arm", "left_arm", "right_leg", "left_leg"};
         for (String partName : allParts) {
@@ -100,11 +119,6 @@ public class ImpaleAnimation extends AbstractDeathAnimation {
             frag.scale(scale);
             frag.alpha(alpha);
             FragmentRenderer.renderFragment(snapshot, frag, poseStack, consumers, light);
-        }
-
-        // Render phantom swords
-        if (swordAlpha > 0.01f) {
-            renderPhantomSwords(poseStack, consumers);
         }
     }
 

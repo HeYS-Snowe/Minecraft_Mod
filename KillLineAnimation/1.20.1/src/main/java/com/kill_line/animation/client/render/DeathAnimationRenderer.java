@@ -11,7 +11,9 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraft.world.entity.LivingEntity;
 
 @Mod.EventBusSubscriber(modid = "kill_line_animation", value = Dist.CLIENT)
 public class DeathAnimationRenderer {
@@ -20,6 +22,15 @@ public class DeathAnimationRenderer {
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
             DeathAnimationManager.getInstance().tick();
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRenderLiving(RenderLivingEvent.Pre<?, ?> event) {
+        // Cancel vanilla entity rendering when a custom death animation is active.
+        // This works with Embeddium/Sodium since it uses Forge's event system.
+        if (DeathAnimationManager.getInstance().isAnimating(event.getEntity().getId())) {
+            event.setCanceled(true);
         }
     }
 
@@ -55,5 +66,8 @@ public class DeathAnimationRenderer {
 
             poseStack.popPose();
         }
+
+        // Flush the buffer to ensure all fragments are drawn
+        Minecraft.getInstance().renderBuffers().bufferSource().endBatch();
     }
 }

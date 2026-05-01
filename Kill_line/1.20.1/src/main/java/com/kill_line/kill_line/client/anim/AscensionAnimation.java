@@ -87,8 +87,20 @@ public class AscensionAnimation extends AbstractDeathAnimation {
 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource consumers, int light, float tickDelta) {
+        if (!snapshot.hasStandardBipedParts()) {
+            // Fallback: enumerate all children rising and fading
+            java.util.List<String> children = snapshot.getAllChildNames();
+            for (String childName : children) {
+                AnimatedFragment frag = new AnimatedFragment(childName);
+                frag.offset(0, riseOffsetY, 0);
+                frag.alpha(alpha);
+                FragmentRenderer.renderFragment(snapshot, frag, poseStack, consumers,
+                        LightTexture.FULL_BRIGHT);
+            }
+            return;
+        }
+
         String[] parts = {"right_leg", "left_leg", "body", "right_arm", "left_arm", "head"};
-        float height = snapshot.getHeight();
 
         float[] partMinY = {0.0f, 0.0f, 0.4f, 0.4f, 0.4f, 0.8f};
         float[] partMaxY = {0.4f, 0.4f, 0.8f, 0.8f, 0.8f, 1.0f};

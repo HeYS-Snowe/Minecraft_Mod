@@ -45,17 +45,17 @@
 
 #### AI 提供的配置信息示例
 
-| 配置项 | 示例值 (Kill_line / Fabric / 1.21.4) |
-|--------|------|
-| Mod ID | `kill_line` |
-| Mod Name | `Kill Line` |
-| Package | `com.kill_line` |
-| MC Version | `1.21.4` |
-| Loader | `Fabric` |
-| Java Version | `21` |
-| Mappings | `Yarn` |
-| Loader Version | `0.16.9` |
-| Fabric API | `0.114.0+1.21.4` |
+| 配置项            | 示例值 (Kill_line / Fabric / 1.21.4) |
+| -------------- | --------------------------------- |
+| Mod ID         | `kill_line`                       |
+| Mod Name       | `Kill Line`                       |
+| Package        | `com.kill_line`                   |
+| MC Version     | `1.21.4`                          |
+| Loader         | `Fabric`                          |
+| Java Version   | `21`                              |
+| Mappings       | `Yarn`                            |
+| Loader Version | `0.16.9`                          |
+| Fabric API     | `0.114.0+1.21.4`                  |
 
 #### 注意事项
 
@@ -843,32 +843,32 @@ gradlew build
 
 ```
 # 普通命名（无前置 mod / 前置 mod 本身）
-{mod名}-{版本号}-{加载器}-{MC版本}-{YYMMDD}-{序号}.jar
+{mod名}-{版本号}-{加载器}-{MC版本}-{YYMMDD}.jar
 
 # 有前置 mod
-{mod名}-{版本号}+{前置mod名}-{前置版本}-{加载器}-{MC版本}-{YYMMDD}-{序号}.jar
+{mod名}-{版本号}+{前置mod名}-{前置版本}-{加载器}-{MC版本}-{YYMMDD}.jar
 ```
 
 **字段说明**：
 
-| 字段   | 说明                                        | 示例                           |
-| ---- | ----------------------------------------- | ---------------------------- |
-| mod名 | Mod 名称                                    | Kill_line, KillLineAnimation |
-| 版本号  | `{MAJOR}.{MINOR}.{PATCH}[.fix{N}]`，每次构建更新 | 1.0.0, 1.0.1.fix1            |
-| 加载器  | fabric / forge / neoforge                 | fabric                       |
-| MC版本 | 目标 Minecraft 版本                           | 1.21.4                       |
-| 日期   | YYMMDD（6 位）                               | 260421                       |
-| 序号   | 当日构建序号，从 01 开始                            | 01                           |
-| 前置版本 | 前置 mod 的精确版本号                             | 1.0.0                        |
+| 字目   | 说明                                                | 示例                           |
+| ---- | ------------------------------------------------- | ---------------------------- |
+| mod名 | Mod 名称                                            | Kill_line, KillLineAnimation |
+| 版本号  | `{MAJOR}.{MINOR}.{PATCH}.{BUILD}[.fix{N}]`，每次构建更新 | 1.0.0.1, 1.0.1.2.fix1        |
+| 加载器  | fabric / forge / neoforge                         | fabric                       |
+| MC版本 | 目标 Minecraft 版本                                   | 1.21.4                       |
+| 日期   | YYMMDD（6 位）                                       | 260421                       |
+| 前置版本 | 前置 mod 的精确版本号                                     | 1.0.0.1                      |
 
 **版本号语义**：每次构建都更新版本号
 
 ```
-{MAJOR}.{MINOR}.{PATCH}[.fix{N}]
+{MAJOR}.{MINOR}.{PATCH}.{BUILD}[.fix{N}]
 
 MAJOR: 不兼容的大版本更新（重构、新 MC 版本适配）
 MINOR: 功能/质量更新（新增物品、方块、机制）
 PATCH: Bug 修复
+BUILD: 构建序号，每次构建递增
 fix{N}: 紧急修复（仅紧急修复时有此段，N 为修复次数）
 ```
 
@@ -876,14 +876,14 @@ fix{N}: 紧急修复（仅紧急修复时有此段，N 为修复次数）
 
 ```
 # 前置 mod（普通命名）
-KillLineAnimation-1.0.0-fabric-1.21.4-260421-01.jar
-KillLineAnimation-1.0.1.fix1-fabric-1.21.4-260422-02.jar
+KillLineAnimation-1.0.0.1-fabric-1.21.4-260421.jar
+KillLineAnimation-1.0.1.2.fix1-fabric-1.21.4-260422.jar
 
 # 依赖 KillLineAnimation 的 mod
-Kill_line-1.0.0+KillLineAnimation-1.0.0-fabric-1.21.4-260421-01.jar
+Kill_line-1.0.0.1+KillLineAnimation-1.0.0.1-fabric-1.21.4-260421.jar
 
 # 多个前置 mod（链式 +）
-SomeMod-1.0.0+ModA-1.0.0+ModB-2.0.0-neoforge-1.21.4-260501-01.jar
+SomeMod-1.0.0.1+ModA-1.0.0.1+ModB-2.0.0.3-neoforge-1.21.4-260501.jar
 ```
 
 ### 11.3 构建后处理

@@ -1,5 +1,6 @@
 package com.kill_line.kill_line.client.slash;
 
+import com.kill_line.kill_line.client.mark.ClientMarkManager;
 import com.kill_line.kill_line.enchantment.InvulnerabilityDetector;
 import com.kill_line.kill_line.enchantment.ModEnchantments;
 import net.minecraft.client.Minecraft;
@@ -50,7 +51,10 @@ public class SlashLineManager {
             if (entity == null || !entity.isAlive()) return true;
             if (player.distanceToSqr(entity) > ModEnchantments.SLASH_LINE_RANGE * ModEnchantments.SLASH_LINE_RANGE)
                 return true;
-            return level <= 0 || !InvulnerabilityDetector.isInvulnerable(entity);
+            // Keep if: holding Kill Line weapon AND (invulnerable OR server-marked)
+            if (level <= 0) return true;
+            return !InvulnerabilityDetector.isInvulnerable(entity)
+                    && ClientMarkManager.getInstance().getMark(entity.getId()) == null;
         });
 
         if (level <= 0) {
@@ -70,7 +74,8 @@ public class SlashLineManager {
                 LivingEntity.class, searchBox,
                 entity -> entity != player
                         && entity.isAlive()
-                        && InvulnerabilityDetector.isInvulnerable(entity)
+                        && (InvulnerabilityDetector.isInvulnerable(entity)
+                            || ClientMarkManager.getInstance().getMark(entity.getId()) != null)
                         && player.distanceToSqr(entity) <= range * range
         );
 

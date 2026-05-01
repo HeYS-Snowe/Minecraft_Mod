@@ -44,10 +44,9 @@ public abstract class LivingEntityMixin extends Entity {
                                      CallbackInfoReturnable<Boolean> cir) {
         if (this.kill_line$processingKill) return;
         if (this.level().isClientSide) return;
-        if (!cir.getReturnValueZ()) return; // damage was not applied
 
         LivingEntity self = (LivingEntity) (Object) this;
-        if (!self.isAlive()) return; // already dead from this hit
+        if (!self.isAlive()) return;
 
         Entity attacker = source.getEntity();
         if (attacker == null) return;
@@ -64,6 +63,10 @@ public abstract class LivingEntityMixin extends Entity {
         int level = ModEnchantments.getKillLineLevel(weapon);
         if (level <= 0) return;
 
+        if (!cir.getReturnValueZ()) return; // damage was not applied
+
+        ServerLevel serverLevel = (ServerLevel) this.level();
+
         KILL_LINE_LOGGER.info("Kill Line level {} detected on {} hitting {} (HP: {}/{})",
                 level, attacker.getName().getString(), self.getName().getString(),
                 String.format("%.1f", self.getHealth()), String.format("%.1f", self.getMaxHealth()));
@@ -77,8 +80,6 @@ public abstract class LivingEntityMixin extends Entity {
 
         // Check if target is already marked by this attacker
         MarkManager.MarkEntry existingMark = markManager.getMark(targetUuid);
-
-        ServerLevel serverLevel = (ServerLevel) this.level();
 
         if (existingMark == null || !existingMark.attackerId().equals(attackerUuid)) {
             // First attack by this attacker -- apply mark

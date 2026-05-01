@@ -23,7 +23,7 @@ public class EntityRenderDispatcherMixin {
             Entity entity, double x, double y, double z, float rotationYaw, float tickDelta,
             PoseStack poseStack, MultiBufferSource bufferSource, int packedLight,
             CallbackInfo ci) {
-        if (entity instanceof LivingEntity && DeathAnimationManager.getInstance().isAnimating(DeathAnimationManager.getInstance().getEntityId(entity))) {
+        if (entity instanceof LivingEntity && DeathAnimationManager.getInstance().isAnimating(entity.getId())) {
             ci.cancel();
         }
     }

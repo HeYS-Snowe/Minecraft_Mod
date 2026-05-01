@@ -62,8 +62,8 @@ Minecraft_Mod/
 - 所有可翻译文本放在 lang 文件中，NEVER 硬编码
 - 新 MC 版本项目**必须**通过 IDE 的 Minecraft Development 插件创建，NEVER 由 AI 手动创建项目基础结构
 - 构建产物按规范命名后存入 build/current/
-- 构建产物命名: `{mod名}-{版本号}[+{前置mod名}-{前置版本}]-{加载器}-{MC版本}-{YYMMDD}-{序号}.jar`
-- 版本号格式: `{MAJOR}.{MINOR}.{PATCH}[.fix{N}]`，每次构建更新
+- 构建产物命名: `{mod名}-{版本号}[+{前置mod名}-{前置版本}]-{加载器}-{MC版本}-{YYMMDD}.jar`
+- 版本号格式: `{MAJOR}.{MINOR}.{PATCH}.{BUILD}[.fix{N}]`，每次构建更新
 - 前置 mod 本身使用普通命名（无 `+依赖` 部分）
 - 新建 mod 前必须先在 doc/ 中创建依赖信息和需求文档
 - NEVER 全局安装 Gradle，始终使用项目自带的 gradlew

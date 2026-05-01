@@ -49,7 +49,7 @@ public class FragmentRenderer {
 
         VertexConsumer consumer = consumers.getBuffer(renderLayer);
 
-        targetPart.render(poseStack, consumer, light, OverlayTexture.NO_OVERLAY, 1.0f, 1.0f, 1.0f, fragment.getAlpha());
+        targetPart.render(poseStack, consumer, light, OverlayTexture.NO_OVERLAY);
 
         poseStack.popPose();
     }

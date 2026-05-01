@@ -14,6 +14,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Ice shatter: freeze blue-white -> cracks appear -> shatter into ice crystal fragments
@@ -34,12 +35,32 @@ public class IceShatterAnimation extends AbstractDeathAnimation {
         if (initialized) return;
         initialized = true;
 
-        for (String partName : BIPED_PARTS) {
-            AnimatedFragment frag = new AnimatedFragment(partName);
-            frag.velocity(0, 0, 0);
-            frag.angularVelocity(0, 0, 0);
-            frag.groundY(-0.3f);
-            fragments.add(frag);
+        if (snapshot.hasModelData()) {
+            net.minecraft.client.model.geom.ModelPart root = snapshot.getRootPart();
+
+            // Try standard biped names
+            java.util.List<String> foundParts = new ArrayList<>();
+            for (String part : BIPED_PARTS) {
+                if (root.hasChild(part)) foundParts.add(part);
+            }
+
+            // If no biped names, enumerate all children
+            if (foundParts.isEmpty()) {
+                Set<String> allChildren = new java.util.LinkedHashSet<>(snapshot.getAllChildNames());
+                foundParts.addAll(allChildren);
+            }
+
+            for (String partName : foundParts) {
+                AnimatedFragment frag = new AnimatedFragment(partName);
+                frag.velocity(0, 0, 0);
+                frag.angularVelocity(0, 0, 0);
+                frag.groundY(-0.3f);
+                fragments.add(frag);
+            }
+        }
+
+        if (fragments.isEmpty()) {
+            fragments.add(new AnimatedFragment("root"));
         }
     }
 
@@ -108,12 +129,9 @@ public class IceShatterAnimation extends AbstractDeathAnimation {
     public void render(PoseStack poseStack, MultiBufferSource consumers, int light, float tickDelta) {
         if (tick < 15) {
             // Pre-shatter: render full model with bright light (frozen look)
-            String[] parts = {"head", "body", "right_arm", "left_arm", "right_leg", "left_leg"};
-            for (String partName : parts) {
-                AnimatedFragment frag = new AnimatedFragment(partName);
-                FragmentRenderer.renderFragment(snapshot, frag, poseStack, consumers,
-                        LightTexture.FULL_BRIGHT);
-            }
+            AnimatedFragment frag = new AnimatedFragment("root");
+            FragmentRenderer.renderFragment(snapshot, frag, poseStack, consumers,
+                    LightTexture.FULL_BRIGHT);
         } else {
             // Post-shatter: render fragments
             FragmentRenderer.renderAllFragments(snapshot, fragments, poseStack, consumers, light);

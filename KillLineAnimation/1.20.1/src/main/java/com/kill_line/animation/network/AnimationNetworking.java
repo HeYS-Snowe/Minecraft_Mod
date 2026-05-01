@@ -71,17 +71,25 @@ public class AnimationNetworking {
             // Client-side handling
             DeathAnimationType type = DeathAnimationRegistry.fromNetworkId(msg.animationTypeId());
             if (type == null) {
-                LOGGER.warn("Unknown animation type id: {}", msg.animationTypeId());
+                LOGGER.warn("[AnimationNet] Unknown animation type id: {}", msg.animationTypeId());
                 return;
             }
 
             Minecraft client = Minecraft.getInstance();
+            LOGGER.info("[AnimationNet] Received death animation packet: entityId={}, pos=({},{},{}), yaw={}, type={}, hasLevel={}",
+                    msg.entityId(),
+                    String.format("%.1f", msg.x()), String.format("%.1f", msg.y()), String.format("%.1f", msg.z()),
+                    msg.bodyYaw(), type.getId(), client.level != null);
+
             EntitySnapshot snapshot = EntitySnapshot.fromPacket(msg, client);
+
+            LOGGER.info("[AnimationNet] Snapshot result: hasModelData={}, hasTexture={}, entityId={}",
+                    snapshot.hasModelData(), snapshot.getTexture() != null, snapshot.getEntityId());
 
             Object anim = type.getFactory().create(snapshot, type);
             if (anim instanceof AbstractDeathAnimation deathAnim) {
                 DeathAnimationManager.getInstance().startAnimation(snapshot.getEntityId(), deathAnim);
-                LOGGER.debug("Started death animation {} for entity {}", type.getId(), snapshot.getEntityId());
+                LOGGER.info("[AnimationNet] Started death animation {} for entity {}", type.getId(), snapshot.getEntityId());
             }
         });
         context.setPacketHandled(true);
