@@ -1,3 +1,25 @@
 {
-  "enchantment.kill_line.kill_line": "斩杀线"
+  "enchantment.kill_line.kill_line": "斩杀线",
+  "itemGroup.kill_line": "斩杀线",
+
+  "item.kill_line.ancient_cornerstone": "远古基石",
+  "item.kill_line.void_frame": "虚空框架",
+  "item.kill_line.blood_moon_core": "血月核心",
+  "item.kill_line.silence_dust": "寂灭尘埃",
+  "item.kill_line.fate_thread": "命运丝线",
+  "item.kill_line.ancient_page": "古神残页",
+  "item.kill_line.critical_essence": "临界精粹",
+  "item.kill_line.critical_scroll": "临界卷轴",
+  "item.kill_line.ancient_iron_block": "远古铁块",
+  "item.kill_line.soul_spark": "灵魂火花",
+  "item.kill_line.bleeding_rose": "泣血玫瑰",
+  "item.kill_line.moon_shadow_altar": "月影祭坛",
+
+  "block.kill_line.critical_workshop": "临界工坊",
+  "block.kill_line.permeation_altar": "渗透祭坛",
+  "block.kill_line.edict_anvil": "诫命之砧",
+
+  "container.kill_line.critical_workshop": "临界工坊",
+  "container.kill_line.permeation_altar": "渗透祭坛",
+  "container.kill_line.edict_anvil": "诫命之砧"
 }

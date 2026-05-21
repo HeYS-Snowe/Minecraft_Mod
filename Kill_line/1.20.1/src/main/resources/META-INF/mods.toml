@@ -61,3 +61,10 @@ mandatory = true
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+# Optional dependency: CriticalCore (enables V2.0 crafting chain)
+[[dependencies."${mod_id}"]]
+modId = "critical_core"
+mandatory = false
+versionRange = "[1.0,)"
+ordering = "AFTER"
+side = "BOTH"

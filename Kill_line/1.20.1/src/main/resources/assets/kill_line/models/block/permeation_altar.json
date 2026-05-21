@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "particle": "kill_line:block/permeation_altar",
+    "bottom": "kill_line:block/permeation_altar",
+    "top": "kill_line:block/permeation_altar",
+    "side": "kill_line:block/permeation_altar"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "kill_line:block/critical_workshop_front",
+    "north": "kill_line:block/critical_workshop_front",
+    "south": "kill_line:block/critical_workshop_side",
+    "east": "kill_line:block/critical_workshop_side",
+    "west": "kill_line:block/critical_workshop_side",
+    "up": "kill_line:block/critical_workshop_top",
+    "down": "kill_line:block/critical_workshop_side"
+  }
+}

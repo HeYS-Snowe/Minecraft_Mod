@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "age=0": { "model": "critical_core:block/threshold_crystal_cluster_stage0" },
+    "age=1": { "model": "critical_core:block/threshold_crystal_cluster_stage1" },
+    "age=2": { "model": "critical_core:block/threshold_crystal_cluster_stage2" },
+    "age=3": { "model": "critical_core:block/threshold_crystal_cluster_stage3" }
+  }
+}

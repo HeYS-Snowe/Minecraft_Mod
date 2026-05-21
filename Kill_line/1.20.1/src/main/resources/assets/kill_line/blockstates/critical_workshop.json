@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "kill_line:block/critical_workshop" },
+    "facing=south": { "model": "kill_line:block/critical_workshop", "y": 180 },
+    "facing=west": { "model": "kill_line:block/critical_workshop", "y": 270 },
+    "facing=east": { "model": "kill_line:block/critical_workshop", "y": 90 }
+  }
+}

@@ -1,5 +1,6 @@
 package com.kill_line.kill_line.enchantment;
 
+import com.kill_line.kill_line.integration.CriticalCoreIntegration;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -8,6 +9,9 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
  * The Kill Line enchantment.
  * When applied to a weapon, it marks targets and can trigger instant kills
  * when the target's health falls below a threshold.
+ *
+ * When CriticalCore is installed: treasure-only, can only be obtained via Edict Anvil.
+ * When CriticalCore is NOT installed: obtainable from enchanting tables (V1.x behavior).
  */
 public class KillLineEnchantment extends Enchantment {
 
@@ -37,7 +41,7 @@ public class KillLineEnchantment extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return false;
+        return CriticalCoreIntegration.shouldBlockEnchantingTable();
     }
 
     @Override
@@ -47,11 +51,11 @@ public class KillLineEnchantment extends Enchantment {
 
     @Override
     public boolean isTradeable() {
-        return true;
+        return !CriticalCoreIntegration.shouldBlockEnchantingTable();
     }
 
     @Override
     public boolean isDiscoverable() {
-        return true;
+        return !CriticalCoreIntegration.shouldBlockEnchantingTable();
     }
 }

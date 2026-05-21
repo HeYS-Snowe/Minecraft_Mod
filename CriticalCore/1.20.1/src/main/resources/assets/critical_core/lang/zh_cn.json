@@ -1,0 +1,11 @@
+{
+  "item.critical_core.threshold_shard": "阈界碎片",
+  "item.critical_core.critical_core": "临界核心",
+  "item.critical_core.critical_handbook": "临界手札",
+  "item.critical_core.void_bottle": "虚空瓶",
+  "item.critical_core.stable_core": "稳定核心",
+  "block.critical_core.threshold_crystal_cluster": "阈界晶簇",
+  "block.critical_core.pulse_forge": "脉冲锻炉",
+  "itemGroup.critical_core": "临界核心",
+  "container.critical_core.pulse_forge": "脉冲锻炉"
+}

@@ -1,3 +1,25 @@
 {
-  "enchantment.kill_line.kill_line": "Kill Line"
+  "enchantment.kill_line.kill_line": "Kill Line",
+  "itemGroup.kill_line": "Kill Line",
+
+  "item.kill_line.ancient_cornerstone": "Ancient Cornerstone",
+  "item.kill_line.void_frame": "Void Frame",
+  "item.kill_line.blood_moon_core": "Blood Moon Core",
+  "item.kill_line.silence_dust": "Silence Dust",
+  "item.kill_line.fate_thread": "Fate Thread",
+  "item.kill_line.ancient_page": "Ancient Page",
+  "item.kill_line.critical_essence": "Critical Essence",
+  "item.kill_line.critical_scroll": "Critical Scroll",
+  "item.kill_line.ancient_iron_block": "Ancient Iron Block",
+  "item.kill_line.soul_spark": "Soul Spark",
+  "item.kill_line.bleeding_rose": "Bleeding Rose",
+  "item.kill_line.moon_shadow_altar": "Moon Shadow Altar",
+
+  "block.kill_line.critical_workshop": "Critical Workshop",
+  "block.kill_line.permeation_altar": "Permeation Altar",
+  "block.kill_line.edict_anvil": "Anvil of Edict",
+
+  "container.kill_line.critical_workshop": "Critical Workshop",
+  "container.kill_line.permeation_altar": "Permeation Altar",
+  "container.kill_line.edict_anvil": "Anvil of Edict"
 }

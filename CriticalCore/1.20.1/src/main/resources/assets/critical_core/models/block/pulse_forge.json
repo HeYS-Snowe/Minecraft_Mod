@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "critical_core:block/pulse_forge_front",
+    "north": "critical_core:block/pulse_forge_front",
+    "south": "critical_core:block/pulse_forge_side",
+    "east": "critical_core:block/pulse_forge_side",
+    "west": "critical_core:block/pulse_forge_side",
+    "up": "critical_core:block/pulse_forge_top",
+    "down": "critical_core:block/pulse_forge_side"
+  }
+}

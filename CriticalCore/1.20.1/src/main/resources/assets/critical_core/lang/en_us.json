@@ -1,0 +1,11 @@
+{
+  "item.critical_core.threshold_shard": "Threshold Shard",
+  "item.critical_core.critical_core": "Critical Core",
+  "item.critical_core.critical_handbook": "Critical Handbook",
+  "item.critical_core.void_bottle": "Void Bottle",
+  "item.critical_core.stable_core": "Stable Core",
+  "block.critical_core.threshold_crystal_cluster": "Threshold Crystal Cluster",
+  "block.critical_core.pulse_forge": "Pulse Forge",
+  "itemGroup.critical_core": "Critical Core",
+  "container.critical_core.pulse_forge": "Pulse Forge"
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "kill_line:block/edict_anvil" },
+    "facing=south": { "model": "kill_line:block/edict_anvil", "y": 180 },
+    "facing=west": { "model": "kill_line:block/edict_anvil", "y": 270 },
+    "facing=east": { "model": "kill_line:block/edict_anvil", "y": 90 }
+  }
+}

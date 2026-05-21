@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "kill_line:block/edict_anvil_top",
+    "north": "kill_line:block/edict_anvil_side",
+    "south": "kill_line:block/edict_anvil_side",
+    "east": "kill_line:block/edict_anvil_side",
+    "west": "kill_line:block/edict_anvil_side",
+    "up": "kill_line:block/edict_anvil_top",
+    "down": "kill_line:block/edict_anvil_side"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "critical_core:block/pulse_forge" },
+    "facing=south": { "model": "critical_core:block/pulse_forge", "y": 180 },
+    "facing=west": { "model": "critical_core:block/pulse_forge", "y": 270 },
+    "facing=east": { "model": "critical_core:block/pulse_forge", "y": 90 }
+  }
+}
